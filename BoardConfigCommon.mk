@@ -107,6 +107,9 @@ TW_CRYPTO_USE_SYSTEM_VOLD := true
 TWRP_INCLUDE_LOGCAT := true
 TARGET_USES_LOGD := true
 
+# Add kdzwriter for G5, V20, G6, V30 Devices:
+TARGET_RECOVERY_DEVICE_MODULES := zip kdzwriter strace
+
 # Properties
 TARGET_SYSTEM_PROP += $(DEVICE_COMMON_PATH)/system.prop
 
