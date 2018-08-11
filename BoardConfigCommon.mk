@@ -14,6 +14,11 @@
 # limitations under the License.
 #
 
+TW_DEVICE_VERSION := Nebula_Alpha_20180811
+
+
+USE_CAMERA_STUB := true
+
 DEVICE_COMMON_PATH := device/lge/g6-common
 
 # Architecture
@@ -110,7 +115,7 @@ TARGET_USES_LOGD := true
 # Add kdzwriter for G5, V20, G6, V30 Devices:
 TARGET_RECOVERY_DEVICE_MODULES := zip kdzwriter strace tzdata
 
-TW_RECOVERY_ADDITIONAL_RELINK_FILES := $(OUT)/system/usr/share/zoneinfo/tzdata
+TW_RECOVERY_ADDITIONAL_RELINK_FILES := $(OUT)/recovery/root/system/usr/share/zoneinfo/tzdata
 
 # Properties
 TARGET_SYSTEM_PROP += $(DEVICE_COMMON_PATH)/system.prop
