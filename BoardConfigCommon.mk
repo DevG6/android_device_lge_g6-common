@@ -108,7 +108,9 @@ TWRP_INCLUDE_LOGCAT := true
 TARGET_USES_LOGD := true
 
 # Add kdzwriter for G5, V20, G6, V30 Devices:
-TARGET_RECOVERY_DEVICE_MODULES := zip kdzwriter strace
+TARGET_RECOVERY_DEVICE_MODULES := zip kdzwriter strace tzdata
+
+TW_RECOVERY_ADDITIONAL_RELINK_FILES := $(OUT)/system/usr/share/zoneinfo/tzdata
 
 # Properties
 TARGET_SYSTEM_PROP += $(DEVICE_COMMON_PATH)/system.prop
