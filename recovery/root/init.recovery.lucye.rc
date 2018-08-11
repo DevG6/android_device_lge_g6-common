@@ -1,0 +1,94 @@
+import /init.recovery.purefusionos.rc
+
+on property:ro.crypto.state=encrypted
+	chmod 0750 /qseecom.sh
+	start qseecom
+
+# separate copy needed to use /sbin/linker64 instead of /system/bin/linker64
+service sbinqseecomd /sbin/qseecomd
+    oneshot
+    disabled
+    user root
+    group root
+    seclabel u:r:recovery:s0
+    
+#service qseecom /sbin/sh /sbin/qseecom.sh
+#	disabled
+#	user root
+#	group root
+#	seclabel u:r:recovery:s0
+    
+service fixdate /sbin/sh /sbin/fixdate.sh
+	oneshot
+	disabled
+	user root
+	group root
+	seclabel u:r:recovery:s0
+    
+service datediag /sbin/sh /sbin/datediag.sh
+	oneshot
+	disabled
+	user root
+	group root
+	seclabel u:r:recovery:s0
+
+service vendor /sbin/sh /sbin/vendor.sh
+	oneshot
+	disabled
+	user root
+	group root
+	seclabel u:r:recovery:s0
+
+#service pulldecryptfiles /sbin/sh /sbin/pulldecryptfiles.sh
+#    oneshot
+#    disabled
+#    user root
+#    group root
+#    seclabel u:r:recovery:s0
+
+on boot
+
+#   start pulldecryptfiles
+#   start sbinqseecomd
+
+   # For usb storage
+   setprop ro.usb_host 1
+   
+   # Time-services
+   setprop persist.delta_time.enable true
+
+   #Fix Adb
+   setprop persist.service.adb.enable 1                                                    
+   setprop persist.service.debuggable 1
+   setprop persist.sys.usb.config mtp,adb
+   setprop sys.usb.config mtp,adb
+#   setprop sys.usb.config adb
+
+    # save battery by switching to interactive once booted
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor interactive
+    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor interactive
+    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor interactive
+    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor interactive
+
+#on fs
+#    # encryption support
+#    chmod 0660 /dev/qseecom
+#    chown system drmrpc /dev/qseecom
+#    chmod 0664 /dev/ion
+#    chown system system /dev/ion
+#    start pulldecryptfiles
+#    install_keyring
+
+on fs
+    # needed to make qseecomd work in recovery
+    chmod 0660 /dev/qseecom
+    chown system drmrpc /dev/qseecom
+    chmod 0664 /dev/ion
+    chown system system /dev/ion
+    chmod 0750 /fixdate.sh
+    chmod 0750 /datediag.sh
+    start fixdate
+    start datediag
+	chmod 0750 /sbin/vendor.sh
+    install_keyring
+	start vendor
