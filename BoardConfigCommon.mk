@@ -114,7 +114,8 @@ TARGET_SYSTEM_PROP += $(DEVICE_COMMON_PATH)/system.prop
 BOARD_SEPOLICY_DIRS += $(DEVICE_COMMON_PATH)/sepolicy
 
 # inherit the kernel properties:
-include $(LOCAL_PATH)/kernel.mk
+# include $(LOCAL_PATH)/kernel.mk
+include device/lge/g6-common/kernel.mk
 
 # Treble
 PRODUCT_SHIPPING_API_LEVEL := 24
