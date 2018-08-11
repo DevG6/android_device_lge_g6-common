@@ -101,7 +101,7 @@ TARGET_HW_DISK_ENCRYPTION := true
 TARGET_LEGACY_HW_DISK_ENCRYPTION := true
 TARGET_CRYPTFS_HW_PATH := vendor/qcom/opensource/cryptfs_hw
 TARGET_KEYMASTER_WAIT_FOR_QSEE := true
-TW_CRYPTO_USE_SYSTEM_VOLD := true
+TW_CRYPTO_USE_SYSTEM_VOLD := qseecomd hwservicemanager keymaster-3-0
 
 # Debug flags
 TWRP_INCLUDE_LOGCAT := true
