@@ -37,6 +37,16 @@ TARGET_SCREEN_HEIGHT := 2880
 TARGET_SCREEN_WIDTH := 1440
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base.mk)
+
+# Define time zone data path
+ifneq ($(wildcard bionic/libc/zoneinfo),)
+    TZDATAPATH := bionic/libc/zoneinfo
+else ifneq ($(wildcard system/timezone),)
+    TZDATAPATH := system/timezone/output_data/iana
+endif
+
 # Time Zone data for Recovery
+ifdef TZDATAPATH
 PRODUCT_COPY_FILES += \
-system/timezone/output_data/iana/tzdata:recovery/root/system/usr/share/zoneinfo/tzdata
+    $(TZDATAPATH)/tzdata:recovery/root/system/usr/share/zoneinfo/tzdata
+endif
