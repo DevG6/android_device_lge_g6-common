@@ -1,4 +1,4 @@
-#!/sbin/ash
+#!/sbin/sh
 until pids=$(pidof recovery)
 do
     sleep 1

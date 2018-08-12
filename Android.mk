@@ -14,10 +14,21 @@
 # limitations under the License.
 #
 
-ifneq ($(filter g6 h870 h872 us997,$(TARGET_DEVICE)),)
-
 LOCAL_PATH := $(call my-dir)
+
+ifneq ($(filter g6 h870 h872 us997,$(TARGET_DEVICE)),)
 
 include $(call all-makefiles-under,$(LOCAL_PATH))
 
+include $(CLEAR_VARS)
+
+$(info *********************************************************************)
+$(info  )
+$(info  Loaded: omni_g6:)
+$(info )
+$(info )
+$(info Local Path:  $(LOCAL_PATH))
+$(info )
+$(info )
+$(info *********************************************************************)
 endif

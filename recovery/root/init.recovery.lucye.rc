@@ -12,12 +12,6 @@ service sbinqseecomd /sbin/qseecomd
     group root
     seclabel u:r:recovery:s0
     
-#service qseecom /sbin/sh /sbin/qseecom.sh
-#	disabled
-#	user root
-#	group root
-#	seclabel u:r:recovery:s0
-    
 service fixdate /sbin/sh /sbin/fixdate.sh
 	oneshot
 	disabled
@@ -69,15 +63,13 @@ on boot
     write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor interactive
     write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor interactive
     write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor interactive
-
-#on fs
-#    # encryption support
-#    chmod 0660 /dev/qseecom
-#    chown system drmrpc /dev/qseecom
-#    chmod 0664 /dev/ion
-#    chown system system /dev/ion
-#    start pulldecryptfiles
-#    install_keyring
+    
+    chmod 0750 /sbin/fixdate.sh
+    chmod 0750 /sbin/datediag.sh
+    chmod 0750 /sbin/vendor.sh
+    start vendor
+    start fixdate
+    start datediag
 
 on fs
     # needed to make qseecomd work in recovery
@@ -85,10 +77,4 @@ on fs
     chown system drmrpc /dev/qseecom
     chmod 0664 /dev/ion
     chown system system /dev/ion
-    chmod 0750 /fixdate.sh
-    chmod 0750 /datediag.sh
-    start fixdate
-    start datediag
-	chmod 0750 /sbin/vendor.sh
     install_keyring
-	start vendor

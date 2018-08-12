@@ -14,7 +14,7 @@
 # limitations under the License.
 #
 
-TW_DEVICE_VERSION := Nebula_Alpha_20180811
+TW_DEVICE_VERSION := Nebula_Alpha_20180812
 
 
 USE_CAMERA_STUB := true
@@ -80,12 +80,13 @@ BOARD_SUPPRESS_EMMC_WIPE := true
 BOARD_HAS_NO_MISC_PARTITION := true
 BOARD_RECOVERY_SWIPE := true
 BOARD_USES_MMCUTILS := true
-TW_EXCLUDE_SUPERSU := true
-TW_INPUT_BLACKLIST := "hbtp_vm"
+# TW_INPUT_BLACKLIST := "hbtp_vm"
 TW_INCLUDE_NTFS_3G := true
 TW_IGNORE_MISC_WIPE_DATA := true
+TW_EXCLUDE_TWRPAPP := true
 # TW_EXCLUDE_MTP := false
 # TW_OEM_BUILD := true
+TW_INCLUDE_FB2PNG := true
 
 # TWRP: paths:
 TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/soc/6a00000.ssusb/6a00000.dwc3/gadget/lun%d/file"
@@ -100,22 +101,27 @@ TARGET_RECOVERY_QCOM_RTC_FIX := true
 # exFAT drivers no longer included in the kernel
 TW_NO_EXFAT_FUSE := false
 
+# No love for the wicked (device ships with M)
+TW_EXCLUDE_SUPERSU := true
+
 # Encryption support
 TW_INCLUDE_CRYPTO := true
 TARGET_HW_DISK_ENCRYPTION := true
 TARGET_LEGACY_HW_DISK_ENCRYPTION := true
 TARGET_CRYPTFS_HW_PATH := vendor/qcom/opensource/cryptfs_hw
 TARGET_KEYMASTER_WAIT_FOR_QSEE := true
-TW_CRYPTO_USE_SYSTEM_VOLD := qseecomd hwservicemanager keymaster-3-0
+TW_CRYPTO_USE_SYSTEM_VOLD := true
+# TW_CRYPTO_USE_SYSTEM_VOLD := qseecomd hwservicemanager keymaster-3-0
 
 # Debug flags
+TW_CRYPTO_SYSTEM_VOLD_DEBUG := true
 TWRP_INCLUDE_LOGCAT := true
 TARGET_USES_LOGD := true
 
 # Add kdzwriter for G5, V20, G6, V30 Devices:
 TARGET_RECOVERY_DEVICE_MODULES := zip kdzwriter strace tzdata
 
-TW_RECOVERY_ADDITIONAL_RELINK_FILES := $(OUT)/recovery/root/system/usr/share/zoneinfo/tzdata
+TW_RECOVERY_ADDITIONAL_RELINK_FILES := $(OUT)/system/usr/share/zoneinfo/tzdata
 
 # Properties
 TARGET_SYSTEM_PROP += $(DEVICE_COMMON_PATH)/system.prop
@@ -129,6 +135,8 @@ include device/lge/g6-common/kernel.mk
 
 # Treble
 PRODUCT_SHIPPING_API_LEVEL := 24
+
+# -include device/lge/g6-common/omni_g6.mk
 
 # inherit from the proprietary version
 -include vendor/lge/g6-common/BoardConfigVendor.mk

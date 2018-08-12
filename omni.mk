@@ -26,8 +26,8 @@ $(call inherit-product, $(SRC_TARGET_DIR)/board/generic_arm64/device.mk)
 # Inherit from our custom product configuration
 $(call inherit-product, vendor/omni/config/common.mk)
 
-PRODUCT_BRAND := lge
-PRODUCT_MANUFACTURER := LGE
+ PRODUCT_BRAND := lge
+ PRODUCT_MANUFACTURER := LGE
 
 PRODUCT_PACKAGES += \
 	adbd
@@ -37,3 +37,11 @@ TARGET_SCREEN_HEIGHT := 2880
 TARGET_SCREEN_WIDTH := 1440
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base.mk)
+
+
+ $(warning *****************************************)
+ $(warning Local Path:  $(LOCAL_PATH))
+ $(warning *****************************************)
+ 
+ $(info **************************************************)
+
