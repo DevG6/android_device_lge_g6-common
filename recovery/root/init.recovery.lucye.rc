@@ -67,6 +67,7 @@ on boot
     chmod 0750 /sbin/fixdate.sh
     chmod 0750 /sbin/datediag.sh
     chmod 0750 /sbin/vendor.sh
+    chmod 0750 /sbin/vendorcreate.sh
     start vendor
     start fixdate
     start datediag

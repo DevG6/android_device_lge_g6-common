@@ -20,28 +20,44 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 # The gps config appropriate for this device
 $(call inherit-product-if-exists, device/common/gps/gps_us_supl.mk)
 
+$(call inherit-product-if-exists, vendor/lge/h872/h872-vendor.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/board/generic_arm64/device.mk)
 # Inherit from our custom product configuration
 $(call inherit-product, vendor/omni/config/common.mk)
 
- PRODUCT_BRAND := lge
- PRODUCT_MANUFACTURER := LGE
+$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base.mk)
 
 PRODUCT_PACKAGES += \
 	adbd
+
+# /vendor
+PRODUCT_PACKAGES += \
+   resize2fs_static \
+   toybox_msm8996 \
+   mke2fs_msm8996 \
+   e2fsck_msm8996 \
+   sgdisk_msm8996
 
 # Boot animation
 TARGET_SCREEN_HEIGHT := 2880
 TARGET_SCREEN_WIDTH := 1440
 
-$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base.mk)
+# Define time zone data path
+ifneq ($(wildcard bionic/libc/zoneinfo),)
+    TZDATAPATH := bionic/libc/zoneinfo
+else ifneq ($(wildcard system/timezone),)
+    TZDATAPATH := system/timezone/output_data/iana
+endif
 
+# Time Zone data for Recovery
+ifdef TZDATAPATH
+PRODUCT_COPY_FILES += \
+    $(TZDATAPATH)/tzdata:recovery/root/system/usr/share/zoneinfo/tzdata
+endif
 
- $(warning *****************************************)
- $(warning Local Path:  $(LOCAL_PATH))
- $(warning *****************************************)
- 
- $(info **************************************************)
+PRODUCT_BRAND := lge
+PRODUCT_MANUFACTURER := LGE
+
 

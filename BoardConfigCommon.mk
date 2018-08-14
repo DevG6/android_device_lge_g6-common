@@ -14,7 +14,7 @@
 # limitations under the License.
 #
 
-TW_DEVICE_VERSION := Nebula_Alpha_20180812
+TW_DEVICE_VERSION := Nebula_Alpha_20180813
 
 
 USE_CAMERA_STUB := true
@@ -80,7 +80,7 @@ BOARD_SUPPRESS_EMMC_WIPE := true
 BOARD_HAS_NO_MISC_PARTITION := true
 BOARD_RECOVERY_SWIPE := true
 BOARD_USES_MMCUTILS := true
-# TW_INPUT_BLACKLIST := "hbtp_vm"
+TW_INPUT_BLACKLIST := "hbtp_vm"
 TW_INCLUDE_NTFS_3G := true
 TW_IGNORE_MISC_WIPE_DATA := true
 TW_EXCLUDE_TWRPAPP := true
