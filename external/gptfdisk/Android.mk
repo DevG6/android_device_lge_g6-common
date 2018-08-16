@@ -1,10 +1,5 @@
 LOCAL_PATH := external/gptfdisk
 
-$(info *********************************************************************)
-$(info  Loaded: sgdisk:)
-$(info Local Path:  $(LOCAL_PATH))
-$(info *********************************************************************)
-
 sgdisk_src_files := \
     sgdisk.cc \
     gptcl.cc \

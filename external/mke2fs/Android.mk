@@ -1,10 +1,5 @@
 LOCAL_PATH := external/e2fsprogs/misc
 
-$(info *********************************************************************)
-$(info  Loaded: mke2fs:)
-$(info Local Path:  $(LOCAL_PATH))
-$(info *********************************************************************)
-
 #########################################################################
 # Build statically linked mke2fs for recovery
 mke2fs_src_files := \
@@ -39,7 +34,7 @@ LOCAL_CFLAGS := $(mke2fs_cflags)
 LOCAL_WHOLE_STATIC_LIBRARIES := $(mke2fs_whole_static_libraries)
 LOCAL_STATIC_LIBRARIES := $(mke2fs_static_libraries)
 LOCAL_MODULE := mke2fs_msm8996
-LOCAL_MODULE_PATH := $(TARGET_RECOVERY_ROOT_OUT)/sbin
+LOCAL_MODULE_PATH := $(PRODUCT_OUT)/install/bin
 LOCAL_FORCE_STATIC_EXECUTABLE := true
 
 include $(BUILD_EXECUTABLE)

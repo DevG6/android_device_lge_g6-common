@@ -16,11 +16,6 @@
 
 LOCAL_PATH := external/toybox
 
-$(info *********************************************************************)
-$(info  Loaded: toybox:)
-$(info Local Path:  $(LOCAL_PATH))
-$(info *********************************************************************)
-
 #
 # To update:
 #
@@ -264,7 +259,7 @@ LOCAL_CFLAGS := $(common_CFLAGS)
 LOCAL_STATIC_LIBRARIES := $(toybox_libraries)
 # libc++_static is needed by static liblog
 LOCAL_CXX_STL := libc++_static
-LOCAL_MODULE_PATH := $(TARGET_RECOVERY_ROOT_OUT)/sbin
+LOCAL_MODULE_PATH := $(PRODUCT_OUT)/install/bin
 LOCAL_FORCE_STATIC_EXECUTABLE := true
 ##LOCAL_POST_INSTALL_CMD := $(hide) $(foreach t,$(ALL_RECOVERY_TOOLS),ln -sf ${LOCAL_MODULE} $(LOCAL_MODULE_PATH)/$(t);)
 include $(BUILD_EXECUTABLE)

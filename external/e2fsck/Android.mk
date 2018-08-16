@@ -1,10 +1,5 @@
 LOCAL_PATH := external/e2fsprogs/e2fsck
 
-$(info *********************************************************************)
-$(info  Loaded: e2fsck:)
-$(info Local Path:  $(LOCAL_PATH))
-$(info *********************************************************************)
-
 e2fsck_src_files := \
 	e2fsck.c \
 	super.c \
@@ -57,6 +52,6 @@ LOCAL_STATIC_LIBRARIES := $(e2fsck_shared_libraries)
 LOCAL_STATIC_LIBRARIES += $(e2fsck_system_shared_libraries)
 LOCAL_MODULE := e2fsck_msm8996
 LOCAL_MODULE_TAGS := optional
-LOCAL_MODULE_PATH := $(TARGET_RECOVERY_ROOT_OUT)/sbin
+LOCAL_MODULE_PATH := $(PRODUCT_OUT)/install/bin
 LOCAL_FORCE_STATIC_EXECUTABLE := true
 include $(BUILD_EXECUTABLE)
