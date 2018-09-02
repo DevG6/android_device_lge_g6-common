@@ -2358,6 +2358,10 @@
         <path name="speaker-and-headphones" />
     </path>
 
+    <path name="voice-speaker-and-voice-headphones">
+        <path name="speaker-and-headphones" />
+    </path>
+
     <path name="speaker-and-headphones-liquid">
         <path name="headphones" />
         <ctl name="SLIM RX0 MUX" value="AIF_MIX1_PB" />
@@ -2848,6 +2852,12 @@
 		<ctl name="DEC5 Volume" value="91" />
 		<ctl name="DEC6 Volume" value="88" />
 		<ctl name="DEC7 Volume" value="91" />
+    </path>
+
+    <path name="unprocessed-headset-mic">
+        <path name="headset-mic" />
+        <ctl name="DEC0 Volume" value="86" />
+        <ctl name="ADC2 Volume" value="12" />
     </path>
 
     <!-- Added for ADSP testfwk -->
